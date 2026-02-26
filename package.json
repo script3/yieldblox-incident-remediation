@@ -1,0 +1,22 @@
+{
+  "name": "yieldblox-incident-remediation",
+  "version": "1.0.0",
+  "description": "This repository holds relevant data and transaction logs for the YieldBlox V2's pool remediation efforts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/script3/yieldblox-incident-remediation.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/script3/yieldblox-incident-remediation/issues"
+  },
+  "homepage": "https://github.com/script3/yieldblox-incident-remediation#readme",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^14.5.0"
+  }
+}
