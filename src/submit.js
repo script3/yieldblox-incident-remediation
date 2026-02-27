@@ -4,6 +4,7 @@ import {
   Operation,
   Claimant,
   xdr,
+  Memo,
 } from "@stellar/stellar-sdk";
 import { stellar_horizon, DIST_KEYPAIR, NETWORK } from "./config.js";
 
@@ -16,6 +17,7 @@ async function distTransactionBuilder() {
   return new TransactionBuilder(account, {
     fee: "100000",
     networkPassphrase: NETWORK,
+    memo: Memo.text("YieldBlox Pool Remediation"),
   }).setTimeout(60);
 }
 
@@ -26,7 +28,7 @@ async function distTransactionBuilder() {
  * @throws {Error} Throws an error if the transaction fails to submit
  */
 async function signAndSubmitTransaction(transaction) {
-  // return transaction.toXDR();
+  return transaction.toXDR();
 
   try {
     transaction.sign(DIST_KEYPAIR);

@@ -12,6 +12,8 @@ if (process.argv.length < 3) {
 
 const asset = assetFromString(process.argv[2]);
 
+// throw new Error("NOT READY");
+
 await executeRemediation(asset);
 
 /**
@@ -37,7 +39,7 @@ export async function executeRemediation(asset) {
     try {
       console.log("Processing entry:", entry);
 
-      if (Number(entry.amount) <= 0.099) {
+      if (Number(entry.amount) < 0.01) {
         console.warn(
           `Amount for account ${entry.account} is below threshold. Skipping entry.`,
         );
@@ -53,7 +55,7 @@ export async function executeRemediation(asset) {
       try {
         destination = await stellar_horizon.loadAccount(entry.destination);
       } catch (error) {
-        if (error?.status === 404) {
+        if (error?.status === 404 || error?.message == "Not Found") {
           console.warn(
             `Destination account ${entry.destination} does not exist. Skipping entry for account ${entry.account}.`,
           );
@@ -63,10 +65,6 @@ export async function executeRemediation(asset) {
           );
           continue;
         } else {
-          appendFileSync(
-            ERROR_FILE_DEST,
-            `${entry.account},${entry.destination},${entry.asset.code},${entry.amount},${error.message}\n`,
-          );
           throw error;
         }
       }
@@ -113,6 +111,7 @@ export async function executeRemediation(asset) {
           `${entry.account},${entry.destination},${entry.asset.code},${entry.amount},${txHash}\n`,
         );
       }
+      console.log("Entry processed successfully:", entry.account);
     } catch (error) {
       console.error(
         `Error processing entry for account ${entry.account}:`,
@@ -127,6 +126,6 @@ export async function executeRemediation(asset) {
       );
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 }
