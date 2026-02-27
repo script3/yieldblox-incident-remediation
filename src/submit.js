@@ -28,7 +28,7 @@ async function distTransactionBuilder() {
  * @throws {Error} Throws an error if the transaction fails to submit
  */
 async function signAndSubmitTransaction(transaction) {
-  return transaction.toXDR();
+  // return transaction.toXDR();
 
   try {
     transaction.sign(DIST_KEYPAIR);

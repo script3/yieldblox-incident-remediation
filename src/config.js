@@ -17,8 +17,8 @@ export const EURC = new Asset(
 export const YBX_POOL =
   "CCCCIQSDILITHMM7PBSLVDT5MISSY7R26MNZXCX4H7J5JQ5FPIYOGYFS";
 
-export const DIST_KEYPAIR = Keypair.fromPublicKey(process.env.DIST_KEYPAIR);
-// export const DIST_KEYPAIR = Keypair.fromSecret(process.env.DIST_KEYPAIR);
+// export const DIST_KEYPAIR = Keypair.fromPublicKey(process.env.DIST_KEYPAIR);
+export const DIST_KEYPAIR = Keypair.fromSecret(process.env.DIST_KEYPAIR);
 
 export const stellar_rpc = new rpc.Server(RPC_URL);
 export const stellar_horizon = new Horizon.Server(HORIZON_URL);

@@ -35,6 +35,8 @@ export async function executeRemediation(asset) {
     `Starting processing for ${asset.code}. Total entries: ${entries.length}`,
   );
 
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   for (let entry of entries) {
     try {
       console.log("Processing entry:", entry);
