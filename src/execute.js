@@ -12,7 +12,7 @@ if (process.argv.length < 3) {
 
 const asset = assetFromString(process.argv[2]);
 
-// throw new Error("NOT READY");
+throw new Error("NOT READY");
 
 await executeRemediation(asset);
 

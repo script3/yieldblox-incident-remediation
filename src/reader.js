@@ -73,3 +73,34 @@ export function toDecimalString(value, decimals = 7) {
   const fracPart = padded.slice(padded.length - decimals);
   return `${intPart}.${fracPart}`;
 }
+
+/**
+ * Represents a remediation amount entry for the backstop remediation process
+ */
+export class BackstopEntry {
+  /**
+   * @param {string} destination
+   * @param {string} amount
+   */
+  constructor(destination, amount) {
+    this.destination = destination;
+    this.amount = amount;
+  }
+}
+
+export function readBackstopCsv() {
+  let filePath = `./data/backstop_remediation.csv`;
+  let file = readFileSync(filePath, "utf-8");
+
+  let lines = file
+    .split("\n")
+    .slice(1)
+    .filter((line) => line.trim() !== "");
+  let entries = lines.map((line) => {
+    let data = line.split(",");
+    let destination = data[1];
+    let amount = data[6];
+    return new BackstopEntry(destination, amount);
+  });
+  return entries;
+}
